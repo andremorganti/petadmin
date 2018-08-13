@@ -1,8 +1,9 @@
-class Client < ApplicationRecord
+class Client &lt; ApplicationRecord
   include Fae::BaseModelConcern
-  def fae_display_field
-    name
-  end
+
+  has_many :campaign_clients
+  has_many :campaigns, through: :campaign_clients, dependent: :destroy
+
   validates :phone, presence: true
   validates :email,
     uniqueness: true,
@@ -11,4 +12,11 @@ class Client < ApplicationRecord
       with: Fae.validation_helpers.email_regex,
       message: 'You need use a valid and unique email'
     }
+
+
+  def fae_display_field
+    name
+  end
+
+
 end

@@ -4,7 +4,7 @@ class Campaign < ApplicationRecord
   validates :body, presence: true
   
   has_many :campaign_clients
-  has_many :clients, through: :campaign_clients
+  has_many :clients, through: :campaign_clients, dependent: :destroy
 
   def fae_display_field
     title
