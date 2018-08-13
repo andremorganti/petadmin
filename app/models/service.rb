@@ -5,5 +5,6 @@ class Service < ApplicationRecord
   def fae_display_field
     title
   end
-
+  validates :title, uniqueness: true, presence: true
+  validates :price, presence: true
 end
